@@ -48,3 +48,8 @@ father(X):- parent(Y,X),man(Y),write(Y),nl.
 %Number_12.7
 sister(X,Y):- woman(X),parent(Z,X),parent(Z,Y).
 sister(X):- sister(Y,X),woman(Y),write(Y),nl.
+
+%Number_13.7
+grand_so(X,Y):- man(X),parent(Y,X_Par),parent(X_Par,X).
+grand_sons(X):- parent(X,G_Par),parent(G_Par,Son),man(Son),write(Son).
+
