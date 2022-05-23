@@ -65,5 +65,10 @@ mult(X,Y):- X<10, Y is X.
 mult(X,Y):- N_X is X div 10, mult(N_X,Y1), Y is (X mod 10) * Y1.
 mult(X):- mult(X,Y), write(Y).
 	
+%Number_16.7
+mult_down(0,Y):- write(Y).
+mult_down(X,Y):- N_X is (X div 10), N_Y is (Y * (X mod 10)), mult_down(N_X,N_Y).
+mult_down(X):- mult_down(X,1).
+
 	
 	
