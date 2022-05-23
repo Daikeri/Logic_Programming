@@ -53,3 +53,9 @@ sister(X):- sister(Y,X),woman(Y),write(Y),nl.
 grand_so(X,Y):- man(X),parent(Y,X_Par),parent(X_Par,X).
 grand_sons(X):- parent(X,G_Par),parent(G_Par,Son),man(Son),write(Son).
 
+%Number_14.7
+grand_ma_and_son(X,Y):- 
+	woman(X),man(Y),parent(X,Y_Par),parent(Y_Par,Y).
+	
+grand_ma_and_son_or(X,Y):- 
+	grand_ma_and_son(X,Y);grand_ma_and_son(Y,X).
