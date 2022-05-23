@@ -59,3 +59,11 @@ grand_ma_and_son(X,Y):-
 	
 grand_ma_and_son_or(X,Y):- 
 	grand_ma_and_son(X,Y);grand_ma_and_son(Y,X).
+	
+%Number_15.7
+mult(X,Y):- X<10, Y is X.
+mult(X,Y):- N_X is X div 10, mult(N_X,Y1), Y is (X mod 10) * Y1.
+mult(X):- mult(X,Y), write(Y).
+	
+	
+	
