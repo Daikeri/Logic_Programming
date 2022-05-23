@@ -44,3 +44,7 @@ parent(konstantin,tanya).
 %Number_11.7
 father(X,Y):- man(X),parent(X,Y).
 father(X):- parent(Y,X),man(Y),write(Y),nl.
+
+%Number_12.7
+sister(X,Y):- woman(X),parent(Z,X),parent(Z,Y).
+sister(X):- sister(Y,X),woman(Y),write(Y),nl.
