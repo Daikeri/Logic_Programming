@@ -76,10 +76,10 @@ countDig(X,Y):- X1 is X div 10, P is X mod 10,
     countDig(X1,Y1), (P>3,P mod 2 =\=0 -> Y is Y1+1;Y is Y1).
 	
 %Number_18.7
-countDig(X,Y):-  countDig(X,Y,0),!.
-countDig(X,Y,Count):- X>0,!,
+countDigD(X,Y):-  countDigD(X,Y,0),!.
+countDigD(X,Y,Count):- X>0,!,
     X1 is X div 10,
     P is X mod 10,
     (P>3,P mod 2 =\= 0 -> Count1 is Count + 1; Count1 is Count),
-    countDig(X1,Y,Count1).
-countDig(_,Y,Z):- Y is Z.
+    countDigD(X1,Y,Count1).
+countDigD(_,Y,Z):- Y is Z.
