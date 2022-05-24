@@ -70,5 +70,8 @@ mult_down(0,Y):- write(Y).
 mult_down(X,Y):- N_X is (X div 10), N_Y is (Y * (X mod 10)), mult_down(N_X,N_Y).
 mult_down(X):- mult_down(X,1).
 
-	
+%Number_17.7
+countDig(0,0):-!.
+countDig(X,Y):- X1 is X div 10, P is X mod 10,
+    countDig(X1,Y1), (P>3,P mod 2 =\=0 -> Y is Y1+1;Y is Y1).
 	
