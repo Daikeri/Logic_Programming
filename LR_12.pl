@@ -51,3 +51,10 @@ multDiv(X,ACC,M):-
 	multDiv(X,N_ACC,N_M);
 	N_ACC is ACC-1,
 	multDiv(X,N_ACC,M).
+%Number_14.7
+
+listLenght([],L):- write(L),!.
+
+listLenght([H|T],L):- N_L is L+1,listLenght(T,N_L).
+
+listLenght([H|T]):-listLenght([H|T],0).
