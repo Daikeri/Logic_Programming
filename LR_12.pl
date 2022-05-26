@@ -137,6 +137,26 @@ tswapMinMax([H|T],Cmin,Cin,Cmax,Cin2,Q,ACC):-
 	tswapMinMax(T,Cmin,Cin,Cmax,Cin2,N_Q,N_ACC).
 	
 tswapMinMax([H|T]):- tfindMin([H|T],H,0,Cmin,Cin),tfindMax([H|T],H,0,Cmax,Cin2),tswapMinMax([H|T],Cmin,Cin,Cmax,Cin2,0,[]).
+%Number_18.19
+
+listL([],L,R):- R is L.
+
+listL([_|T],L,R):- N_L is L+1,listL(T,N_L,R).
+
+listL([H|T],R):-listL([H|T],0,R).
+
+shiftRight([],_,_,ACC):- writeList(ACC).
+
+shiftRight([Head|Tail],Shift,I,ACC):-
+	I < Shift,
+	appenD(ACC,[Head],N_ACC),
+	N_I is I + 1,
+	shiftRight(Tail,Shift,N_I,N_ACC);
+	appenD([Head],ACC,N_ACC),
+	N_I is I + 1,
+	shiftRight(Tail,Shift,N_I,N_ACC).
+
+shiftRight([Head|Tail]):- listL([Head|Tail],Lenght),Shift is Lenght - 1, shiftRight([Head|Tail],Shift,0,[]).
 
 %Number_19.31
 evenQ([H|T]):-evenQ([H|T],0).
