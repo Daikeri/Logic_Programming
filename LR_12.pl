@@ -1,5 +1,16 @@
 %Number_11.7
 
+%general
+
+appenD([], List, List).
+appenD([Head|Tail], List, [Head|ResultTail]):-
+    appenD(Tail, List, ResultTail).
+
+writeList([]):-!.
+writeList([H|T]):-write(H),nl,writeList(T).
+
+%general
+
 checkS_down(X,R):-checkS(X,X,0,R),!.	
 
 checkS_down(_,0,Q,R):-R is Q,!.
@@ -69,3 +80,19 @@ evenQ([H|T],Q):-
 	N_Q is Q + 1,
 	evenQ(T,N_Q);
 	evenQ(T,Q).
+
+%Number_20.34
+
+segment([],_,_,ACC):-writeList(ACC).
+
+segment([H|T],A,B,ACC):-
+	H >= A,
+	H =< B,
+	appenD(ACC,[H],N_ACC),
+	segment(T,A,B,N_ACC);
+	segment(T,A,B,ACC).
+	
+%segment([1,25,32,4,6,78,12,-8,5,40],20,40)	
+
+segment([H|T],A,B):- segment([H|T],A,B,[]).
+	
