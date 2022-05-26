@@ -55,6 +55,17 @@ multDiv(X,ACC,M):-
 
 listLenght([],L):- write(L),!.
 
-listLenght([H|T],L):- N_L is L+1,listLenght(T,N_L).
+listLenght([_|T],L):- N_L is L+1,listLenght(T,N_L).
 
 listLenght([H|T]):-listLenght([H|T],0).
+
+%Number_19.31
+evenQ([H|T]):-evenQ([H|T],0).
+
+evenQ([],Q):-write(Q).
+
+evenQ([H|T],Q):-
+	H mod 2 =:= 0,
+	N_Q is Q + 1,
+	evenQ(T,N_Q);
+	evenQ(T,Q).
