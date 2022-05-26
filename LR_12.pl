@@ -93,6 +93,51 @@ findUnique([H|T],COPY,El):-
 	
 findUnique([],El):- write(El).
 
+%Number_17.17
+
+tfindMin([H|T],Min,InMi,Cmin,Cin):-tfindMin([H|T],Min,InMi,Cmin,Cin,0).
+
+tfindMin([H|T],Min,InMi,Cmin,Cin,Q):-
+	H < Min,
+	N_Min is H,
+	N_InMi is Q,
+	N_Q is Q + 1,
+	tfindMin(T,N_Min,N_InMi,Cmin,Cin,N_Q);
+	N_Q is Q + 1, 
+	tfindMin(T,Min,InMi,Cmin,Cin,N_Q).
+
+tfindMin([],Min,InMi,Cmin,Cin,Q):-Cmin is Min, Cin is InMi.
+
+tfindMax([H|T],Max,InMa,Cmax,Cin):-tfindMax([H|T],Max,InMa,Cmax,Cin,0).
+
+tfindMax([H|T],Max,InMa,Cmax,Cin,Q):-
+	H > Max,
+	N_Max is H,
+	N_InMa is Q,
+	N_Q is Q + 1,
+	tfindMax(T,N_Max,N_InMa,Cmax,Cin,N_Q);
+	N_Q is Q + 1, 
+	tfindMax(T,Max,InMa,Cmax,Cin,N_Q).
+
+tfindMax([],Max,InMa,Cmax,Cin,Q):-Cmax is Max, Cin is InMa.
+
+tswapMinMax([],_,_,_,_,_,ACC):-writeList(ACC).
+
+tswapMinMax([H|T],Cmin,Cin,Cmax,Cin2,Q,ACC):-
+	Q =:= Cin,
+	appenD(ACC,[Cmax],N_ACC),
+	N_Q is Q + 1,
+	tswapMinMax(T,Cmin,Cin,Cmax,Cin2,N_Q,N_ACC);
+	Q =:= Cin2,
+	appenD(ACC,[Cmin],N_ACC),
+	N_Q is Q + 1,
+	tswapMinMax(T,Cmin,Cin,Cmax,Cin2,N_Q,N_ACC);
+	appenD(ACC,[H],N_ACC),
+	N_Q is Q + 1,
+	tswapMinMax(T,Cmin,Cin,Cmax,Cin2,N_Q,N_ACC).
+	
+tswapMinMax([H|T]):- tfindMin([H|T],H,0,Cmin,Cin),tfindMax([H|T],H,0,Cmax,Cin2),tswapMinMax([H|T],Cmin,Cin,Cmax,Cin2,0,[]).
+
 %Number_19.31
 evenQ([H|T]):-evenQ([H|T],0).
 
