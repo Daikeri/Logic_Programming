@@ -70,6 +70,29 @@ listLenght([_|T],L):- N_L is L+1,listLenght(T,N_L).
 
 listLenght([H|T]):-listLenght([H|T],0).
 
+%Number_16.11
+
+prom(Now,[H|T],R):- prom(Now,[H|T],R,0),!.
+
+prom(Now,[H|T],R,Q):-
+	Now =:= H,
+	N_Q is Q + 1,
+	prom(Now,T,R,N_Q);
+	prom(Now,T,R,Q).
+
+prom(_,[],R,Q):- R is Q.
+
+findUnique([H|T]):- findUnique([H|T],[H|T],El).
+
+findUnique([H|T],COPY,El):-
+	prom(H,COPY,RES),
+	RES =:= 1,
+	El is H,
+	findUnique([],El);
+	findUnique(T,COPY,El).
+	
+findUnique([],El):- write(El).
+
 %Number_19.31
 evenQ([H|T]):-evenQ([H|T],0).
 
