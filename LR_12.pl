@@ -70,6 +70,27 @@ listLenght([_|T],L):- N_L is L+1,listLenght(T,N_L).
 
 listLenght([H|T]):-listLenght([H|T],0).
 
+%Number_15.7
+
+listLTwo([],L,R):- R is L.
+
+listLTwo([_|T],L,R):- N_L is L+1,listL(T,N_L,R).
+
+listLTwo([H|T],R):-listL([H|T],0,R).
+
+shiftRightTwo([],_,_,ACC):- writeList(ACC).
+
+shiftRightTwo([Head|Tail],Shift,I,ACC):-
+	I < Shift,
+	appenD(ACC,[Head],N_ACC),
+	N_I is I + 1,
+	shiftRight(Tail,Shift,N_I,N_ACC);
+	appenD([Head],ACC,N_ACC),
+	N_I is I + 1,
+	shiftRight(Tail,Shift,N_I,N_ACC).
+
+shiftRightTwo([Head|Tail]):- listLTwo([Head|Tail],Lenght),Shift is Lenght - 2, shiftRightTwo([Head|Tail],Shift,0,[]).
+
 %Number_16.11
 
 prom(Now,[H|T],R):- prom(Now,[H|T],R,0),!.
